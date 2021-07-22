@@ -1,0 +1,4 @@
+# Ignore WASM files
+*.wasm
+*.wat
+a.out
