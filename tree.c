@@ -39,30 +39,27 @@ int leafNode(Node* node) {
 	return node->l_ptr == NULL && node->r_ptr == NULL;
 }
 
-void inOrderTraversal(Node* tree, int traversedElements[]) {
+void inOrderTraversal(Node* tree) {
 	if (!leafNode(tree)) {
-		inOrderTraversal(tree->r_ptr, traversedElements);
-		//*(traversedElements++) = &tree->num;
+		inOrderTraversal(tree->l_ptr);
 		printf("%d\n", tree->num);
-		inOrderTraversal(tree->l_ptr, traversedElements);
+		inOrderTraversal(tree->r_ptr);;
 	}
 }
 
-void preOrderTraversal(Node* tree, int traversedElements[]) {
+void preOrderTraversal(Node* tree) {
 	if(!leafNode(tree)){
-		//*(traversedElements++) = &tree->num;
 		printf("%d\n", tree->num);
-		preOrderTraversal(tree->l_ptr, traversedElements);
-		preOrderTraversal(tree->r_ptr, traversedElements);
+		preOrderTraversal(tree->l_ptr);
+		preOrderTraversal(tree->r_ptr);
 	}
 }
 
-void postOrderTraversal(Node* tree, int traversedElements[]) {
+void postOrderTraversal(Node* tree) {
 	if(!leafNode(tree)) {
-		postOrderTraversal(tree->l_ptr, traversedElements);
-		postOrderTraversal(tree->r_ptr, traversedElements);
+		postOrderTraversal(tree->l_ptr);
+		postOrderTraversal(tree->r_ptr);
 		printf("%d\n", tree->num);
-		//*(traversedElements++) = &tree->num;
 	}
 }
 
@@ -140,8 +137,7 @@ Node createTree(int elements[], int elementCount) {
 
 int main(void) {
 	int elements[] = {17,62,5,3,8,4,9};
-	int traversed[7];
 	Node myTree = createTree(elements, 7);
-	preOrderTraversal(&myTree, traversed);
+	inOrderTraversal(&myTree);
 	return 0;
 }
